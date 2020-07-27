@@ -102,9 +102,60 @@ function renderButtons() {
 
 function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
-}
+  let ul = [...document.querySelectorAll('aside ul li')]; 
 
+  let pepperoni = document.querySelector('.pepperoni');
+  let mushrooms = document.querySelector('.mushrooms');
+  let peppers = document.querySelector('.peppers');
+  let white = document.querySelector('.white');
+  let gluten = document.querySelector('.gluten');
+
+  if (!state.pepperoni) {
+    pepperoni.classList.add('hidden')
+  } else {
+    pepperoni.classList.remove('hidden')
+  }
+  if (!state.mushrooms) {
+    mushrooms.classList.add('hidden')
+  } else {
+    mushrooms.classList.remove('hidden')
+  }
+
+  if (!state.greenPeppers) {
+    peppers.classList.add('hidden')
+  } else {
+    peppers.classList.remove('hidden')
+  }
+
+  if (state.whiteSauce) {
+    white.classList.add('hidden')
+  } else {
+    white.classList.remove('hidden')
+  }
+ 
+  if (state.glutenFreeCrust) {
+    gluten.classList.add('hidden')
+  } else {
+    gluten.classList.remove('hidden')
+  } 
+  let totalHolder = document.querySelector('.total')
+  //console.log(ul[1].innerHTML[1]);
+  //console.log(totalHolder.innerHTML)
+  let totalContent = 0;
+  for (let i = 0; i < ul.length; i++) {
+
+     totalContent += ul[i].innerHTML[1]
+     return totalContent 
+  }
+/*   let ulArr = ul.reduce((acc, item) => {
+    return acc + item.innerHTMl
+  }, 0) */
+  
+  totalHolder.innerHTML = totalContent;
+
+}
 renderEverything();
+renderPrice();
 
 let pepperoniButton = document
   .querySelector(".btn.btn-pepperoni")
@@ -132,6 +183,7 @@ let sauseButton = document
   .addEventListener("click", () => {
     state.whiteSauce = state.whiteSauce;
     renderEverything();
+    
   });
 
 let glutenButton = document
@@ -139,5 +191,5 @@ let glutenButton = document
   .addEventListener("click", () => {
     state.glutenFreeCrust = state.glutenFreeCrust;
     renderEverything();
-    console.log("glu");
+    
   });
